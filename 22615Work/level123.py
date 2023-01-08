@@ -29,7 +29,6 @@ def Gesture_Recognize(img):
     mask = cv2.erode(mask, k1, iterations=1)
     mask_color = cv2.cvtColor(mask,cv2.COLOR_GRAY2BGR)
     cv2.imshow('mask', mask)
-    #cv2.imwrite('mask.png', mask)
     black_img = np.zeros(mask.shape,np.uint8)
 
     contours,hierarchy = cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
@@ -84,9 +83,7 @@ def Gesture_Recognize(img):
       humanResult = "paper"
     else:
       cv2.putText(img, "bad", (0, img.shape[0]-10), font, 1, (255, 255, 255), 2)
-
-    
-     
+      
     cv2.putText(img,'hand-%d'%pointNum,(10,35),font,1.2,(0,255,255),3)       
     return pointNum, img
 
@@ -97,7 +94,6 @@ def move(pointNum):
   if record[0] == 1 and record[-1] == 5 and record[1] == 1:
     print('Grab\n')
    #cv2.putText(img, "grab", (0, img.shape[0] - 10), font, 2, (0, 0, 255), 2)
-
 
 if __name__ == '__main__':
     cap = cv2.VideoCapture()
